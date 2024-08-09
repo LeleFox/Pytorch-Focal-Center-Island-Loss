@@ -10,7 +10,7 @@ Implementation from paper:
 
 Focal Loss helps to reduce the problem of class imbalance by adding a focal term to the cross entropy loss. It is defined as:
 
-$L_{F} = -\frac{1}{N}\sum_{i=1}^{N} \alpha_j \cdot (1-p_{i,y_i})^{\gamma} \cdot \log(p_{i,y_i})$
+$$\mathcal{L}_{F} = -\frac{1}{N}\sum_{i=1}^{N} \alpha_j \cdot (1-p_{i,y_i})^{\gamma} \cdot \log(p_{i,y_i})$$
 
 where $N$ is the number of samples in the minibatch, $p_{i, y_i}$ is the probability predicted for the sample $i$ to belong to ground truth class $y_i$, $\alpha_j$ is the weight of the class $j$, and $\gamma$ is the focusing parameter.  
 Difficult samples will be associated by the network with a low $p_{i,y_i}$, and the loss will be higher for them because of focal term $(1- p_{i,y_i})^\gamma$. The higher $\gamma$ is, the more the loss will be focused on difficult samples. Common values for $\gamma$ are 1.5, 2. Common class weights $\alpha$ computation is in function `compute_class_weights`.
@@ -21,9 +21,7 @@ Implementation from paper:
 
 Center Loss encourages the network to learn a compact representation of the data, which is helpful for datasets having high intra-class variability and high inter-class similarity, meaning that features for samples belonging to same class tend to be very spread in the feature space and features of samples belonging to different class tend to overlap. Intraclass-compactness is achieved by minimizing the distance between the output of the network and the center of the corresponding class. It is defined as:
 
-$
-L_{C} = \frac{1}{2} \sum_{i=1}^{N} \left\lVert x_i - c_{y_{i}} \right\rVert_{2}
-$
+$$L_{C} = \frac{1}{2} \sum_{i=1}^{N} \left\lVert x_i - c_{y_{i}} \right\rVert_{2}$$
 
 Where ${c}_{y_{i}}$ is the class center of the correct class $y_i$ for sample ${x}_i$.
 
@@ -31,17 +29,13 @@ Ideally, the class centers should be learnt by computing the mean of the deep fe
 
 So an actual center update is computed at each mini-batch through the following SGD update rule:
 
-$
-{c}_{j}^{t+1} = {c}_{j}^{t} - \alpha \, \mathrm{d}{c}_{j}^{t}
-$
+$${c}_{j}^{t+1} = {c}_{j}^{t} - \alpha \, \mathrm{d}{c}_{j}^{t}$$
 
 Where $\mathrm{d}{c}_{j}^{t}$ is the gradient of the center loss with respect to the class center ${c}_{j}$.
 
 The CE loss encourages features separability, reducing the inter-class similarity, but doesn't act on the discriminative power of the features. Therefore, center loss is used along with the standard CE loss:
 
-$
-\mathcal{L} = \mathcal{L}_{CrossEntropy} + \lambda \mathcal{L}_C 
-$
+$$\mathcal{L} = \mathcal{L}_{CrossEntropy} + \lambda \mathcal{L}_C$$
 
 where $\lambda$ is a hyperparameter that balances the two loss functions. Intuitively, the CE loss forces the deep features of different classes staying apart while the center loss efficiently pulls the deep features of the same class to their centers.
 
@@ -51,17 +45,13 @@ Implementation from paper:
 
 Island Loss improves the center loss to produce features that are not only compact (for samples in same class), but also separable. It is computed as:
 
-$
-\mathcal{L}_I = \sum_{{c}_j}^{K} \sum_{{c}_k \neq {c}_j}^{K} \left(\frac{{c}_j \cdot {c}_k}{\left\lVert {c}_k \right\rVert_{2} - \left\lVert {c}_k \right\rVert_{2}} + 1\right)
-$
+$$\mathcal{L}_I = \sum_{{c}_j}^{K} \sum_{{c}_k \neq {c}_j}^{K} \left(\frac{{c}_j \cdot {c}_k}{\left\lVert {c}_k \right\rVert_{2} - \left\lVert {c}_k \right\rVert_{2}} + 1\right)$$
 
 Where ${c}_j$ and ${c}_k$ are the class centers of class $j$ and $k$ respectively. The +1 term is necessary to make the loss non-negative, since the cosine exists in $[-1,+1]$ range. Intuitively, we are minimizing the cosine similarities between the class centers which encourages the features of different classes to be more separable in the feature space.
 
 The combined loss will be therefore the sum of Island Loss, center loss and CE loss:
 
-$
-\mathcal{L} = \mathcal{L}_{CrossEntropy} + \lambda_{global} (\mathcal{L}_C + \lambda_{island} \mathcal{L}_I)
-$
+$$\mathcal{L} = \mathcal{L}_{CrossEntropy} + \lambda_{global} (\mathcal{L}_C + \lambda_{island} \mathcal{L}_I)$$
 
 Where $\lambda_{global}$ and $\lambda_{island}$ are hyperparameters that balance the three loss functions. 
 
