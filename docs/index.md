@@ -1,3 +1,4 @@
+<!-- docs/index.md -->
 ---
 layout: default
 ---
