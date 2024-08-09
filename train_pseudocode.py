@@ -67,17 +67,9 @@ def step():
     optimizer.step() #Perform the step with the optimizer
     scheduler.step() #Perform the step with the LR scheduler (for model parameter)
 
-    #! If using center loss, perform the step with the center optimizer
-    if loss_fn == 'CE_Center':
-        #don't want the lambda_center to affect the gradients of the loss with respect to the centers, so rescale back the gradients
-        for param in Center_loss.parameters():
-            param.grad.data *= (1. / lambda_center) 
-            optimizer_centers.step()
-    elif loss_fn == 'CE_Island':
-        #don't want the lambda_global to affect the gradients of the loss with respect to the centers, so rescale back the gradients
-        for param in Island_loss.parameters():
-            param.grad.data *= (1. / lambda_global) #lambda_island is not so relevant
-            optimizer_centers.step()
+    #! If using center loss or island loss, perform the step with the center optimizer
+    if loss_fn == 'CE_Center' or  loss_fn == 'CE_Island':
+        optimizer_centers.step()
                         
     # Reset loss and accuracy tracking
     accuracy.reset()
