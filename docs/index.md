@@ -62,6 +62,18 @@ Figure shows a training of 10 epochs of an `nn.EfficientNet_b0` over Cald3R&MenD
 
 Note how Center Loss helps in producing clustered features that are more discriminative than the ones produce by same network trained with Cross Entropy. Furthermore, Island Loss pushes clusters away from each other, producing even more discriminative features.
 
-![CrossEntropy Loss](Images/cross.png)
-![Center Loss](Images/center.png)
-![Island Loss](Images/island.png)
+<p align="center">
+  <img src="Images/cross.png" alt="CrossEntropy Loss" width="450"/>
+  <br>
+  <span>CrossEntropy Loss</span>
+</p>
+<p align="center">
+  <img src="Images/center.png" alt="Center Loss" width="450"/>
+  <br>
+  <span>Center Loss</span>
+</p>
+<p align="center">
+  <img src="Images/island.png" alt="Island Loss" width="450"/>
+  <br>
+  <span>Island Loss</span>
+</p>
