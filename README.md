@@ -23,19 +23,19 @@ Center Loss encourages the network to learn a compact representation of the data
 
 $$L_{C} = \frac{1}{N} \sum_{i=1}^{N} \left\lVert x_i - c_{y_{i}} \right\rVert_{2}$$
 
-Where ${c}_{y_{i}}$ is the class center of the correct class $y_i$ for sample ${x}_i$.
+Where $c_{y_{i}}$ is the class center of the correct class $y_i$ for sample ${x}_i$.
 
 Ideally, the class centers should be learnt by computing the mean of the deep features produced at each step for all the samples of the same class in the training set. However, this would be inefficient and impractical. So, class centers are actually updated at each mini-batch iteration by averaging the deep features of the samples in the mini-batch. This may introduce large perturbations in the learning of the centers (for example, a mini-batch could contain only samples from a single class with a mean very different from the global mean). To avoid this, class centers are learnt using an SGD optimizer with fixed learning rate $\alpha \in [0,1]$.
 
 So an actual center update is computed at each mini-batch through the following SGD update rule:
 
-$${c}_{j}^{t+1} = {c}_{j}^{t} - \alpha \, \mathrm{d}{c}_{j}^{t}$$
+$$c_{j}^{t+1} = c_{j}^{t} - \alpha dc_{j}^{t}$$
 
-Where $\mathrm{d}{c}_{j}^{t}$ is the gradient of the center loss with respect to the class center ${c}_{j}$.
+Where $\bm{d}{c}_{j}^{t}$ is the gradient of the center loss with respect to the class center $c_{j}$.
 
 The CE loss encourages features separability, reducing the inter-class similarity, but doesn't act on the discriminative power of the features. Therefore, center loss is used along with the standard CE loss:
 
-$${L} = {L}_{CrossEntropy} + \lambda {L}_C$$
+$$L = {L}_{CrossEntropy} + \lambda {L}_C$$
 
 where $\lambda$ is a hyperparameter that balances the two loss functions. Intuitively, the CE loss forces the deep features of different classes staying apart while the center loss efficiently pulls the deep features of the same class to their centers.
 
@@ -45,7 +45,7 @@ Implementation from paper:
 
 Island Loss improves the center loss to produce features that are not only compact (for samples in same class), but also separable. It is computed as:
 
-$${L}_I = \sum_{{c}_j}^{K} \sum_{{c}_k \neq {c}_j}^{K} \left(\frac{{c}_j \cdot {c}_k}{\left\lVert {c}_k \right\rVert_{2} - \left\lVert {c}_k \right\rVert_{2}} + 1\right)$$
+$$L_I = \sum_{c}_j^{K} \sum_{c_k \neq {c}_j}^{K} \left(\frac{{c}_j \cdot {c}_k}{\left\lVert {c}_k \right\rVert_{2} - \left\lVert {c}_k \right\rVert_{2}} + 1\right)$$
 
 Where ${c}_j$ and ${c}_k$ are the class centers of class $j$ and $k$ respectively. The +1 term is necessary to make the loss non-negative, since the cosine exists in $[-1,+1]$ range. Intuitively, we are minimizing the cosine similarities between the class centers which encourages the features of different classes to be more separable in the feature space.
 
