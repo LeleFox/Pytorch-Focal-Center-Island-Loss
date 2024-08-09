@@ -1,8 +1,6 @@
-<!-- docs/index.md -->
-
 # Pytorch Library Loss Functions
 
-Pytorch implementations for Focal Loss, Center Loss, Island Loss
+Pytorch implementations for `Focal Loss`, `Center Loss`, `Island Loss`
 
 ## Focal Loss
 Implementation from paper:  
@@ -78,3 +76,12 @@ Note how Center Loss helps in producing clustered features that are more discrim
   <br>
   <span>Island Loss - Accuracy:  64.75</span>
 </p>
+
+
+## Acknowledgments
+
+- [Pytorch](https://pytorch.org/)
+- [Island Loss Paper](http://arxiv.org/abs/1710.03144)
+- [Focal Loss Paper](http://arxiv.org/abs/1708.02002)
+- [Center Loss Paper](https://api.semanticscholar.org/CorpusID:4711865)
+- [Cald3R and MEnD3s](https://www.sciencedirect.com/science/article/pii/S1047320323002833)

@@ -1,8 +1,6 @@
-<!-- docs/index.md -->
-
 # Pytorch Library Loss Functions
 
-Pytorch implementations for Focal Loss, Center Loss, Island Loss
+Pytorch implementations for `Focal Loss`, `Center Loss`, `Island Loss`
 
 ## Focal Loss
 Implementation from paper:  
@@ -60,6 +58,7 @@ The updating strategy is the SGD, exactly as for Center Loss.
 ## Example
 Figure shows a training of 10 epochs of an `nn.EfficientNet_b0` over Cald3R&MenD3s dataset ([CalD3r and MenD3s: Spontaneous 3D facial expression databases](https://www.sciencedirect.com/science/article/pii/S1047320323002833)) for Facial Expression Recognition (FER).
 
+
 Note how Center Loss helps in producing clustered features that are more discriminative than the ones produce by same network trained with Cross Entropy, especially for Neutral class which is very spread. Furthermore, Island Loss pushes clusters away from each other, producing even more discriminative features.
 
 <p align="center">
@@ -77,3 +76,12 @@ Note how Center Loss helps in producing clustered features that are more discrim
   <br>
   <span>Island Loss - Accuracy:  64.75</span>
 </p>
+
+
+## Acknowledgments
+
+- [Pytorch](https://pytorch.org/)
+- [Island Loss Paper](http://arxiv.org/abs/1710.03144)
+- [Focal Loss Paper](http://arxiv.org/abs/1708.02002)
+- [Center Loss Paper](https://api.semanticscholar.org/CorpusID:4711865)
+- [Cald3R and MEnD3s](https://www.sciencedirect.com/science/article/pii/S1047320323002833)
