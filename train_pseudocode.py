@@ -4,12 +4,13 @@ from utils import utils
 from utils import compute_class_weights
 import torch.optim as optim
 from efficientnet_pytorch import EfficientNet
-from torch.optim.lr_scheduler import CosineAnnealingLR
-from losses import FocalLoss, CenterLoss, IslandLoss, CE_Center_Criterion, CE_Island_Criterion
+from Focal_Loss import FocalLoss
+from Center_Loss import CenterLoss, CE_Center_Criterion
+from Island_Loss import IslandLoss, CE_Island_Criterion
 
 device= ("cuda" if torch.cuda.is_available() else "cpu")
 
-#load an efficientnet model
+#load a model
 model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=10)
 model = model.to(device, non_blocking=True) #?model to GPU
 
