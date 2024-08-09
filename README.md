@@ -7,7 +7,7 @@ Implementation from paper:\
 [Focal Loss for Dense Object Detection](http://arxiv.org/abs/1708.02002) (TsungYi Lin, Priya Goyal, Ross B. Girshick, Kaiming He, Piotr Doll)
 
 Focal Loss helps to reduce the problem of class imbalance by adding a focal term to the cross entropy loss. It is defined as:
-
+![Equation](https://latex.codecogs.com/svg.latex?\newcommand{\norm}[1]{\left\lVert#1\right\rVert}\mathcal{L}_{C}=\frac{1}{2}\sum_{i=1}^{N}\norm{\bm{x}_i-\bm{c}_{y_{i}}}_{2})
 $$
     \mathcal{L}_{F} = -\frac{1}{N}\sum_{i=1}^{N} \bm{\alpha_j} \cdot (1-\bm{p_{i,y_i}})^{\gamma} \cdot log(\bm{p_{i,y_i}}) 
 
