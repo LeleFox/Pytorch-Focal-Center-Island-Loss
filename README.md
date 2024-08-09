@@ -1,4 +1,4 @@
-
+<!--v1.0-->
 # Pytorch Library Loss functions 
 Pytorch implementations for Focal Loss, Center Loss, Island Loss
 
