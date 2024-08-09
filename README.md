@@ -10,9 +10,7 @@ Implementation from paper:
 
 Focal Loss helps to reduce the problem of class imbalance by adding a focal term to the cross entropy loss. It is defined as:
 
-$
-L_{F} = -\frac{1}{N}\sum_{i=1}^{N} \alpha_j \cdot (1-p_{i,y_i})^{\gamma} \cdot \log(p_{i,y_i})
-$
+$L_{F} = -\frac{1}{N}\sum_{i=1}^{N} \alpha_j \cdot (1-p_{i,y_i})^{\gamma} \cdot \log(p_{i,y_i})$
 
 where $N$ is the number of samples in the minibatch, $p_{i, y_i}$ is the probability predicted for the sample $i$ to belong to ground truth class $y_i$, $\alpha_j$ is the weight of the class $j$, and $\gamma$ is the focusing parameter.  
 Difficult samples will be associated by the network with a low $p_{i,y_i}$, and the loss will be higher for them because of focal term $(1- p_{i,y_i})^\gamma$. The higher $\gamma$ is, the more the loss will be focused on difficult samples. Common values for $\gamma$ are 1.5, 2. Common class weights $\alpha$ computation is in function `compute_class_weights`.
