@@ -41,7 +41,7 @@ where $\lambda$ is a hyperparameter that balances the two loss functions. Intuit
 
 ## Island Loss
 Implementation from paper:  
-[Island Loss for Learning Discriminative Features in Facial Expression Recognition](http://arxiv.org/abs/1708.02002) (Jie Cai, Zibo Meng, Ahmed Shehab Khan, Zhiyuan Li, James O'Reilly, Yan Tong)
+[Island Loss for Learning Discriminative Features in Facial Expression Recognition](http://arxiv.org/abs/1710.03144) (Jie Cai, Zibo Meng, Ahmed Shehab Khan, Zhiyuan Li, James O'Reilly, Yan Tong)
 
 Island Loss improves the center loss to produce features that are not only compact (for samples in same class), but also separable. It is computed as:
 
