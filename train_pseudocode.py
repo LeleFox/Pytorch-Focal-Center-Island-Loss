@@ -54,10 +54,7 @@ def zero_grad():
     """Reset the gradient when gradient accumulation is finished."""
     optimizer.zero_grad(set_to_none=True)
     
-    if loss_fn == 'CE_Center':
-        optimizer_centers.zero_grad(set_to_none=True)
-        
-    if loss_fn == 'CE_Center' or args.train.loss_fn == 'CE_Island':
+    if loss_fn == 'CE_Center' or loss_fn == 'CE_Island':
         optimizer_centers.zero_grad(set_to_none=True)
 
 
@@ -79,8 +76,7 @@ def step():
 accuracy = utils.Accuracy(topk=(1, 5))
 loss = utils.LossMeter()
 
-model.train(True) #? set the model to training mode
-model.zero_grad() #?clear any existing gradient
+zero_grad() #?clear any existing gradient
 
 for epoch in range(1, num_epochs+1):
     #!move data,labels to gpu
@@ -97,6 +93,6 @@ for epoch in range(1, num_epochs+1):
     loss.val.backward(retain_graph=False)
     accuracy.update(logits, label)
 
-    model.step() 
-    model.zero_grad() 
+    step() 
+    zero_grad() 
     
