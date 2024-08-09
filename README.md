@@ -60,7 +60,8 @@ The updating strategy is the SGD, exactly as for Center Loss.
 ## Example
 Figure shows a training of 10 epochs of an `nn.EfficientNet_b0` over Cald3R&MenD3s dataset ([CalD3r and MenD3s: Spontaneous 3D facial expression databases](https://www.sciencedirect.com/science/article/pii/S1047320323002833)) for Facial Expression Recognition (FER).
 
-Note how Center Loss helps in producing clustered features that are more discriminative than the ones produce by same network trained with Cross Entropy. Furthermore, Island Loss pushes clusters away from each other, producing even more discriminative features.
+
+Note how Center Loss helps in producing clustered features that are more discriminative than the ones produce by same network trained with Cross Entropy, especially for Neutral class which is very spread. Furthermore, Island Loss pushes clusters away from each other, producing even more discriminative features.
 
 <p align="center">
   <img src="Images/cross.png" alt="CrossEntropy Loss" width="450"/>
