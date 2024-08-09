@@ -65,15 +65,15 @@ Note how Center Loss helps in producing clustered features that are more discrim
 <p align="center">
   <img src="Images/cross.png" alt="CrossEntropy Loss" width="450"/>
   <br>
-  <span>CrossEntropy Loss</span>
+  <span>CrossEntropy Loss  - Accuracy:  58.83</span>
 </p>
 <p align="center">
   <img src="Images/center.png" alt="Center Loss" width="450"/>
   <br>
-  <span>Center Loss</span>
+  <span>Center Loss  - Accuracy:  63.46</span>
 </p>
 <p align="center">
   <img src="Images/island.png" alt="Island Loss" width="450"/>
   <br>
-  <span>Island Loss</span>
+  <span>Island Loss - Accuracy:  64.75</span>
 </p>
