@@ -29,9 +29,9 @@ Ideally, the class centers should be learnt by computing the mean of the deep fe
 
 So an actual center update is computed at each mini-batch through the following SGD update rule:
 
-$$c_{j}^{t+1} = c_{j}^{t} - \alpha dc_{j}^{t}$$
+$$c_{j}^{t+1} = c_{j}^{t} - \alpha \cdot dc_{j}^{t}$$
 
-Where $\bm{d}{c}_{j}^{t}$ is the gradient of the center loss with respect to the class center $c_{j}$.
+Where $d{c}_{j}^{t}$ is the gradient of the center loss with respect to the class center $c_j$.
 
 The CE loss encourages features separability, reducing the inter-class similarity, but doesn't act on the discriminative power of the features. Therefore, center loss is used along with the standard CE loss:
 
@@ -45,13 +45,13 @@ Implementation from paper:
 
 Island Loss improves the center loss to produce features that are not only compact (for samples in same class), but also separable. It is computed as:
 
-$$L_I = \sum_{c}_j^{K} \sum_{c_k \neq {c}_j}^{K} \left(\frac{{c}_j \cdot {c}_k}{\left\lVert {c}_k \right\rVert_{2} - \left\lVert {c}_k \right\rVert_{2}} + 1\right)$$
+$$L_I = \sum_{c_j}^{K} \sum_{c_k \neq c_j}^{K} \left(\frac{c_j \cdot c_k}{\left\lVert c_k \right\rVert_{2} - \left\lVert c_k \right\rVert_{2}} + 1\right)$$
 
 Where ${c}_j$ and ${c}_k$ are the class centers of class $j$ and $k$ respectively. The +1 term is necessary to make the loss non-negative, since the cosine exists in $[-1,+1]$ range. Intuitively, we are minimizing the cosine similarities between the class centers which encourages the features of different classes to be more separable in the feature space.
 
 The combined loss will be therefore the sum of Island Loss, center loss and CE loss:
 
-$${L} = {L}_{CrossEntropy} + \lambda_{global} ({L}_C + \lambda_{island} {L}_I)$$
+$$L = L_{CrossEntropy} + \lambda_{global} (L_C + \lambda_{island} L_I)$$
 
 Where $\lambda_{global}$ and $\lambda_{island}$ are hyperparameters that balance the three loss functions. 
 
