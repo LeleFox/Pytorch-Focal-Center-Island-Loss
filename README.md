@@ -74,7 +74,7 @@ Note how Center Loss helps in producing clustered features that are more discrim
 <p align="center">
   <img src="Images/island.png" alt="Island Loss" width="450"/>
   <br>
-  <span>Island Loss - Accuracy:  64.75</span>
+  <span>Island Loss - Accuracy:  64.85</span>
 </p>
 
 
